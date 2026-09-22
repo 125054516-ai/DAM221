@@ -3,6 +3,22 @@ const readline = require('readline');
 let pedidos = [];
 let totalAcumulado = 0;
 
+let productos = [
+    { id: 1, nombre: "Cafe americano", precio: 40 },
+    { id: 2, nombre: "Cafe con leche", precio: 45 },
+    { id: 3, nombre: "Pan de Muerto ", precio: 15 }
+];
+
+function mostrarProductos() {
+    console.log("\nProductos disponibles:");
+
+    productos.forEach((producto) => {
+        console.log(
+            `${producto.id}. ${producto.nombre} - $${producto.precio}`
+        );
+
+    });
+}
 function agregarPedido(nombre, precio) {
     let pedido = { nombre: nombre, precio: precio };
 
@@ -22,6 +38,22 @@ function mostrarPedidos() {
 
 function mostrarTotal() {
     console.log(`Total acumulado: $${totalAcumulado}`);
+}
+
+function calcularTotal() {
+    let subtotal = pedidos.reduce((acumulador, pedido) => {
+        const { precio } = pedido;
+        return acumulador + precio;
+
+    }, 0);
+
+    let iva = subtotal * 0.20;
+    let total = subtotal + iva;
+    
+    console.log("\nRESUMEN DE PEDIDOS");
+    console.log(`Subtotal: $${subtotal}`);
+    console.log(`IVA (20%): $${iva}`);
+    console.log(`Total: $${total}`);
 }
 
 function eliminarPedido(indice) {
@@ -68,8 +100,8 @@ function mostrarMenu() {
     console.log("3. Mostrar total acumulado");
     console.log("4. Eliminar pedido");
     console.log("5. Modificar pedido");
-    console.log("6. Salir");
-    console.log("--------------------------");
+    console.log("6. Calcular total con IVA");
+    console.log("7. Salir");
 }
 
 const rl = readline.createInterface({
@@ -111,7 +143,11 @@ rl.on('line', (input) => {
             break;
 
         case "6":
-            console.log("Programa finalizado.");
+            calcularTotal();
+            break;
+        
+        case "7":
+            console.log("Saliendo del sistema, adiooooossss ");
             rl.close();
             return;
 
