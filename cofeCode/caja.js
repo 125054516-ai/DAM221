@@ -1,18 +1,26 @@
 const readline = require('readline');
 
 let pedidos = [];
-let totalAcumulado = 0;
 
 let productos = [
     { id: 1, nombre: "Cafe americano", precio: 40 },
     { id: 2, nombre: "Cafe con leche", precio: 45 },
-    { id: 3, nombre: "Pan de Muerto ", precio: 15 }
+    { id: 3, nombre: "Pan de Muerto ", precio: 15 } 
 ];
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
+function obtenerTotalAcumulado() {
+    return pedidos.reduce((acc, p) => acc + p.precio, 0);
+}
+
+function mostrarCatalogo() {    
+    console.log("\n--- Catálogo de Productos ---");
+    productos.forEach(p => console.log(`id: ${p.id} | nombre: ${p.nombre} | precio: $${p.precio}`));
+}
 
 function mostrarProductos() {
     console.log("\nProductos disponibles \n elige tu opcion:");
@@ -23,9 +31,7 @@ function mostrarProductos() {
     console.log("5. Modificar pedido");
     console.log("6. Calcular total con IVA ( ni modos )");
     console.log("7. Salir");
-    productos.forEach((producto) => {
-        console.log(`${producto.id}. ${producto.nombre} - $${producto.precio}`);
-    });
+ 
 }
 
 function agregarPedido(nombre, precio) {
