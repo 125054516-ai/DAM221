@@ -28,11 +28,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#dfb2ee',
+    backgroundColor: '#dfb2ee',          
 
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'row',
+    justifyContent: 'space-evenly',
 
   },
   
