@@ -109,6 +109,6 @@ const estilos = StyleSheet.create({
     margin: 16,
   },
   texto: {
-    textAlign: 'center',
+    textAligN: 'center',
   },
 });
