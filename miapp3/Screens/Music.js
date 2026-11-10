@@ -1,106 +1,43 @@
+//hacer un codigo con alertas, switch y if else, que muestre un mensaje dependiendo de la opcion seleccionada por el usuario
+import React, { useState } from 'react';
+import { View, Text, Button, Alert } from 'react-native';
 
-/*1. Zona de importaciones*/
+const Music = () => {
+  const [selectedOption, setSelectedOption] = useState('');
+  const [message, setMessage] = useState('');
 
-import { StyleSheet, Text, View, ScrollView, SafeAreaView } from 'react-native';
-
-/*2. Zona Render o main*/
-
-export default function Music() {
-
-const canciones = [
-  'la bachata',
-  'despacito',
-  'dakita',
-  'tusa',
-  'provenza',
-  'ojitos lindos',
-  'titi me pregunto',
-  'mi gente',
-  'hawai',
-  'felices los 4',
-  'duele el corazon',
-  'gasolina',
-  'me rehuso'
-];
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    switch (option) {
+      case 'rock':
+        setMessage('Has seleccionado Rock');
+        break;
+      case 'pop':
+        setMessage('Has seleccionado Pop');
+        break;
+      case 'jazz':
+        setMessage('Has seleccionado Jazz');
+        break;
+      default:
+        setMessage('Opción no válida');
+    }
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
-
-      <Text style={styles.titulo}> LA MUSICA DE LOS BROS </Text>
-
-      <View style={styles.reproductor}>
-        <Text style={styles.texto}> LISTA DE SONGS </Text>
-        <Text> LAS MAS TOPS </Text>
-      </View>
-
-      <Text style={styles.subtitulo}>Canciones disponibles</Text>
-
-      <ScrollView style={styles.lista}>
-
-        {canciones.map((item, index) => (
-          <View key={index} style={styles.tarjeta}>
-            <Text style={styles.textoLista}>{item}</Text>
-          </View>
-        ))}
-
-      </ScrollView>
-
-    </SafeAreaView>
+    <View>
+      <Text>Selecciona un género musical:</Text>
+      <Button title="Rock" onPress={() => handleOptionSelect('rock')} />
+      <Button title="Pop" onPress={() => handleOptionSelect('pop')} />
+      <Button title="Jazz" onPress={() => handleOptionSelect('jazz')} />
+      <Text>{message}</Text>
+    </View>
   );
-}
+};
 
-/*3. Zona de estilos y posiciones*/
-
-const styles = StyleSheet.create({
-
+const styles =  StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3d45e9',
-    padding: 20,
-  },
-
-  titulo: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-
-  reproductor: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 15,
+    justifyContent: 'center',
     alignItems: 'center',
   },
-
-  texto: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-
-  subtitulo: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 20,
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-
-  lista: {
-    flex: 1,
-  },
-
-  tarjeta: {
-    backgroundColor: 'white',
-    padding: 20,
-    marginBottom: 10,
-    borderRadius: 15,
-  },
-
-  textoLista: {
-  fontSize: 18,
-  textAlign: 'center',
-},
-
 });
