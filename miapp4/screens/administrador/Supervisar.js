@@ -1,69 +1,114 @@
-import React from 'react';
-import { View, Text, Pressable, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
 
-// Pantalla para supervisar cursos
+import React from 'react';
+import { View, Text, ScrollView, SafeAreaView, Pressable, StyleSheet } from 'react-native';
+
 export default function Supervisar() {
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
 
-      <View style={styles.encabezado}>
-        <Text style={styles.titulo}>
-          Banco de Tiempo{'\n'}y Talento
-        </Text>
+        <View style={styles.encabezado}>
+          <Text style={styles.titulo}>Supervisar servicios</Text>
+          <Text style={styles.subtitulo}>
+            Administración de cursos KRONA
+          </Text>
+        </View>
 
-        <Pressable style={styles.regresar}>
-          <Text style={styles.textoRegresar}>Regresar</Text>
-        </Pressable>
-      </View>
+        <View style={styles.contenido}>
 
-      <ScrollView
-        contentContainerStyle={styles.contenido}
-        showsVerticalScrollIndicator={false}
-      >
+          <View style={styles.tarjetaCurso}>
+            <View style={styles.filaSuperior}>
+              <Text style={styles.nombreCurso}>Curso de HTML</Text>
 
-        <View style={styles.informacion}>
+              <View style={styles.estado}>
+                <Text style={styles.estadoTexto}>Activo</Text>
+              </View>
+            </View>
 
-          <View style={styles.datos}>
-            <Text style={styles.textoDato}>
-              Duración:{'\n'}
-              6 Días{'\n'}
-              Categoría:{'\n'}
-              Programación{'\n'}
-              Costo/hora:{'\n'}
-              $25{'\n'}
-              Contacto:{'\n'}
-              4425513945{'\n'}
-              ID Impartidor:{'\n'}
-              3422448
+            <Text style={styles.descripcionCorta}>
+              Desarrollo de páginas web
             </Text>
-          </View>
 
-          <View style={styles.curso}>
-            <Text style={styles.nombreCurso}>CURSO HTML</Text>
+            <View style={styles.linea} />
 
-            <View style={styles.imagen}>
-              <Text style={styles.textoImagen}>IMAGEN</Text>
+            <Text style={styles.seccionInterna}>
+              Información del servicio
+            </Text>
+
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>Duración</Text>
+              <Text style={styles.valor}>6 días</Text>
+            </View>
+
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>Categoría</Text>
+              <Text style={styles.valor}>Programación</Text>
+            </View>
+
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>Costo por hora</Text>
+              <Text style={styles.valor}>25 créditos</Text>
+            </View>
+
+            <View style={styles.linea} />
+
+            <Text style={styles.seccionInterna}>
+              Información del impartidor
+            </Text>
+
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>Nombre</Text>
+              <Text style={styles.valor}>Diego</Text>
+            </View>
+
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>ID impartidor</Text>
+              <Text style={styles.valor}>125053572</Text>
+            </View>
+
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>Contacto</Text>
+              <Text style={styles.valor}>diego@krona.com</Text>
             </View>
           </View>
 
+          <Text style={styles.seccion}>Descripción del curso</Text>
+
+          <View style={styles.panel}>
+            <Text style={styles.descripcion}>
+              Curso básico de HTML donde aprenderás a crear
+              páginas web, utilizar etiquetas y organizar
+              contenido para desarrollar sitios sencillos.
+            </Text>
+          </View>
+
+          <Text style={styles.seccion}>Administración</Text>
+
+          <View style={styles.panel}>
+            <Text style={styles.administracionTexto}>
+              Revisa la información del servicio antes de
+              realizar cambios en su publicación.
+            </Text>
+
+            <Pressable style={styles.botonEditar}>
+              <Text style={styles.textoEditar}>
+                Editar servicio
+              </Text>
+            </Pressable>
+
+            <Pressable style={styles.botonEliminar}>
+              <Text style={styles.textoEliminar}>
+                Eliminar curso
+              </Text>
+            </Pressable>
+          </View>
+
         </View>
-
-        <Text style={styles.descripcion}>
-          Aprende los fundamentos de HTML y crea tus propias páginas web desde cero. Durante este curso de 6 días conocerás las principales etiquetas y estructuras utilizadas para crear sitios web, trabajando con ejemplos y ejercicios prácticos.
-          {'\n'}
-          A lo largo del curso aprenderás a crear la estructura de una página, agregar textos, imágenes, enlaces, listas, tablas y formularios, además de organizar correctamente el contenido de una página web.
-        </Text>
-
-        <Pressable style={styles.boton}>
-          <Text style={styles.textoBoton}>Eliminar curso</Text>
-        </Pressable>
-
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -71,101 +116,155 @@ const styles = StyleSheet.create({
   },
 
   encabezado: {
-    height: 80,
     backgroundColor: '#4D315C',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    padding: 25,
+    paddingVertical: 30,
   },
 
   titulo: {
-    flex: 1,
-    fontSize: 14,
+    fontSize: 25,
+    fontWeight: 'bold',
     color: '#FFFFFF',
-    textAlign: 'center',
   },
 
-  regresar: {
-    height: 80,
-    backgroundColor: '#FFFEE4',
-    paddingHorizontal: 18,
-    borderTopLeftRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textoRegresar: {
-    fontSize: 13,
-    color: '#222222',
+  subtitulo: {
+    fontSize: 12,
+    color: '#EADCEB',
+    marginTop: 5,
   },
 
   contenido: {
-    flexGrow: 1,
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    paddingBottom: 35,
+    padding: 18,
+    paddingBottom: 30,
   },
 
-  informacion: {
+  tarjetaCurso: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 18,
+    elevation: 2,
+  },
+
+  filaSuperior: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
-  },
-
-  datos: {
-    width: '45%',
-  },
-
-  textoDato: {
-    fontSize: 13,
-    color: '#222222',
-    lineHeight: 17,
-  },
-
-  curso: {
-    width: '48%',
     alignItems: 'center',
   },
 
   nombreCurso: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    flex: 1,
+  },
+
+  estado: {
+    backgroundColor: '#F0E5F1',
+    borderRadius: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+
+  estadoTexto: {
+    fontSize: 11,
+    color: '#4D315C',
+  },
+
+  descripcionCorta: {
+    fontSize: 12,
+    color: '#777777',
+    marginTop: 7,
+  },
+
+  linea: {
+    height: 1,
+    backgroundColor: '#F0E5F1',
+    marginVertical: 17,
+  },
+
+  seccionInterna: {
     fontSize: 14,
-    color: '#222222',
-    marginBottom: 8,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginBottom: 10,
   },
 
-  imagen: {
-    width: 92,
-    height: 72,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#777777',
+  fila: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingVertical: 9,
   },
 
-  textoImagen: {
-    fontSize: 9,
-    color: '#AAAAAA',
+  etiqueta: {
+    fontSize: 12,
+    color: '#777777',
+  },
+
+  valor: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    textAlign: 'right',
+    flexShrink: 1,
+  },
+
+  seccion: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginTop: 23,
+    marginBottom: 12,
+  },
+
+  panel: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 18,
+    elevation: 2,
   },
 
   descripcion: {
-    fontSize: 13,
-    color: '#222222',
-    lineHeight: 17,
-    marginTop: 10,
-  },
-
-  boton: {
-    backgroundColor: '#4D315C',
-    borderRadius: 20,
-    paddingHorizontal: 25,
-    paddingVertical: 11,
-    alignSelf: 'center',
-    marginTop: 35,
-  },
-
-  textoBoton: {
     fontSize: 12,
+    color: '#555555',
+    lineHeight: 20,
+  },
+
+  administracionTexto: {
+    fontSize: 12,
+    color: '#777777',
+    lineHeight: 19,
+    marginBottom: 18,
+  },
+
+  botonEditar: {
+    backgroundColor: '#4D315C',
+    borderRadius: 25,
+    paddingVertical: 12,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+
+  textoEditar: {
+    fontSize: 12,
+    fontWeight: 'bold',
     color: '#FFFFFF',
+  },
+
+  botonEliminar: {
+    backgroundColor: '#F0E5F1',
+    borderRadius: 25,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+
+  textoEliminar: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#4D315C',
   },
 });

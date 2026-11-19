@@ -1,81 +1,121 @@
 
 import React from 'react';
-import { View, Text, Pressable, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, SafeAreaView, Pressable, StyleSheet } from 'react-native';
+
+const habilidades = [
+  'Java',
+  'HTML y CSS',
+  'Matemáticas',
+  'Bases de datos'
+];
 
 export default function Perfil() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.encabezado}>
-        <Text style={styles.titulo}>Tu Perfil</Text>
-        <Pressable style={styles.regresar}>
-          <Text style={styles.textoRegresar}>Regresar</Text>
-        </Pressable>
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
 
-      <ScrollView contentContainerStyle={styles.contenido}>
+        <View style={styles.encabezado}>
+          <Text style={styles.titulo}>Tu Perfil</Text>
+          <Text style={styles.subtitulo}>
+            Información de tu cuenta
+          </Text>
+        </View>
 
-        <View style={styles.datos}>
-          <View style={styles.foto}>
-          </View>
+        <View style={styles.contenido}>
 
-          <View style={styles.informacion}>
-            <View style={styles.fila}>
-              <Text style={styles.etiqueta}>Nombre</Text>
-              <View style={styles.valor}>
-                <Text style={styles.textoValor}>Diego</Text>
-              </View>
+          <View style={styles.tarjetaPerfil}>
+            <View style={styles.avatar}>
+              <Text style={styles.avatarTexto}>:)</Text>
             </View>
 
-            <View style={styles.fila}>
-              <Text style={styles.etiqueta}>Puntos</Text>
-              <View style={styles.valor}>
-                <Text style={styles.textoValor}>8</Text>
-              </View>
-            </View>
+            <Text style={styles.nombre}>Diego</Text>
+            <Text style={styles.usuario}>Usuario KRONA</Text>
 
-            <View style={styles.fila}>
-              <Text style={styles.etiqueta}>Cursos</Text>
-              <View style={styles.valor}>
-                <Text style={styles.textoValor}>3</Text>
-              </View>
+            <View style={styles.estado}>
             </View>
           </View>
-        </View>
 
-        <View style={styles.secciones}>
-          <View style={styles.columna}>
-            <Text style={styles.subtitulo}>Cursos</Text>
-            <Text style={styles.lista}>• Cálculo Integral</Text>
-            <Text style={styles.lista}>• Estructura de datos</Text>
-            <Text style={styles.lista}>• Aplicaciones web</Text>
+          <View style={styles.estadisticas}>
+
+            <View style={styles.tarjetaEstadistica}>
+              <Text style={styles.numero}>54</Text>
+              <Text style={styles.detalle}>Créditos</Text>
+            </View>
+
+            <View style={styles.tarjetaEstadistica}>
+              <Text style={styles.numero}>4</Text>
+              <Text style={styles.detalle}>Cursos</Text>
+            </View>
+
+            <View style={styles.tarjetaEstadistica}>
+              <Text style={styles.numero}>5.0</Text>
+              <Text style={styles.detalle}>Calificación</Text>
+            </View>
+
           </View>
 
-          <View style={styles.columna}>
-            <Text style={styles.subtitulo}>Pendientes</Text>
-            <Text style={styles.lista}>• Aplicaciones móviles</Text>
+          <Text style={styles.seccion}>Mis habilidades</Text>
+
+          <View style={styles.panel}>
+            <Text style={styles.descripcion}>
+              Conocimientos que puedo compartir
+            </Text>
+
+            <View style={styles.listaHabilidades}>
+              {habilidades.map((habilidad, index) => (
+                <View key={index} style={styles.habilidad}>
+                  <Text style={styles.habilidadTexto}>
+                    {habilidad}
+                  </Text>
+                </View>
+              ))}
+            </View>
+
+            <Pressable style={styles.botonAgregar}>
+              <Text style={styles.textoAgregar}>
+                + Agregar habilidad
+              </Text>
+            </Pressable>
           </View>
+
+          <Text style={styles.seccion}>Mi cuenta</Text>
+
+          <View style={styles.panel}>
+
+            <Pressable style={styles.opcion}>
+              <Text style={styles.opcionTexto}>
+                Editar datos
+              </Text>
+              <Text style={styles.flecha}>›</Text>
+            </Pressable>
+
+            <View style={styles.linea} />
+
+            <Pressable style={styles.opcion}>
+              <Text style={styles.opcionTexto}>
+                Ver historial
+              </Text>
+              <Text style={styles.flecha}>›</Text>
+            </Pressable>
+
+            <View style={styles.linea} />
+
+            <Pressable style={styles.opcion}>
+              <Text style={styles.opcionTexto}>
+                Ajustes
+              </Text>
+              <Text style={styles.flecha}>›</Text>
+            </Pressable>
+
+          </View>
+
+          <Pressable style={styles.botonCerrar}>
+            <Text style={styles.textoCerrar}>
+              Cerrar sesión
+            </Text>
+          </Pressable>
+
         </View>
-
-        <View style={styles.habilidades}>
-          <Text style={styles.subtitulo}>Mis habilidades</Text>
-          <Text style={styles.lista}>• Programación en Java</Text>
-          <Text style={styles.lista}>• Bases de Datos</Text>
-        </View>
-
-        <View style={styles.calificacion}>
-          <Text style={styles.subtitulo}>Calificación</Text>
-          <Text style={styles.estrellas}>☆☆☆☆☆</Text>
-        </View>
-
-        <View style={styles.historial}>
-          <Text style={styles.tituloHistorial}>Historial y créditos</Text>
-          <Text style={styles.horas}>54 hrs ◷</Text>
-        </View>
-
-        <Pressable style={styles.editar}>
-          <Text style={styles.textoBoton}>Editar</Text>
-        </Pressable>
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -88,167 +128,185 @@ const styles = StyleSheet.create({
   },
 
   encabezado: {
-    height: 70,
     backgroundColor: '#4D315C',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingLeft: 55,
+    padding: 25,
+    paddingVertical: 30,
   },
 
   titulo: {
-    fontSize: 17,
+    fontSize: 26,
+    fontWeight: 'bold',
     color: '#FFFFFF',
-  },
-
-  regresar: {
-    backgroundColor: '#FFFEE4',
-    paddingHorizontal: 18,
-    height: 70,
-    justifyContent: 'center',
-    borderTopLeftRadius: 18,
-    borderBottomLeftRadius: 18,
-  },
-
-  textoRegresar: {
-    fontSize: 14,
-    color: '#222222',
-  },
-
-  contenido: {
-    flexGrow: 1,
-    padding: 18,
-  },
-
-  datos: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 55,
-  },
-
-  foto: {
-    width: 85,
-    height: 95,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#8B728E',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  usuario: {
-    fontSize: 55,
-    color: '#222222',
-  },
-
-  informacion: {
-    width: '55%',
-    justifyContent: 'space-between',
-  },
-
-  fila: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-
-  etiqueta: {
-    width: 75,
-    borderWidth: 1,
-    borderColor: '#8B728E',
-    borderRadius: 20,
-    backgroundColor: '#FFFFFF',
-    padding: 5,
-    fontSize: 10,
-    textAlign: 'center',
-  },
-
-  valor: {
-    width: 45,
-    height: 23,
-    borderWidth: 1,
-    borderColor: '#8B728E',
-    borderRadius: 20,
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textoValor: {
-    fontSize: 10,
-    color: '#222222',
-  },
-
-  secciones: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 25,
-  },
-
-  columna: {
-    width: '49%',
-    alignItems: 'flex-start',
   },
 
   subtitulo: {
-    backgroundColor: '#4D315C',
-    color: '#FFFFFF',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
     fontSize: 12,
-    overflow: 'hidden',
-    marginBottom: 10,
-  },
-
-  lista: {
-    fontSize: 11,
-    color: '#222222',
-    marginBottom: 10,
-  },
-
-  habilidades: {
-    alignItems: 'flex-start',
-    marginBottom: 20,
-  },
-
-  calificacion: {
-    alignItems: 'flex-end',
-    marginBottom: 30,
-  },
-
-  estrellas: {
-    fontSize: 28,
-    color: '#222222',
-  },
-
-  historial: {
-    alignItems: 'center',
-    marginBottom: 40,
-  },
-
-  tituloHistorial: {
-    fontSize: 20,
-    color: '#4D315C',
-  },
-
-  horas: {
-    fontSize: 15,
-    color: '#4D315C',
+    color: '#EADCEB',
     marginTop: 5,
   },
 
-  editar: {
-    backgroundColor: '#4D315C',
-    borderRadius: 20,
-    paddingHorizontal: 25,
-    paddingVertical: 8,
-    alignSelf: 'flex-end',
-    marginTop: 'auto',
+  contenido: {
+    padding: 18,
+    paddingBottom: 30,
   },
 
-  textoBoton: {
+  tarjetaPerfil: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 20,
+    alignItems: 'center',
+    elevation: 2,
+  },
+
+  avatar: {
+    width: 75,
+    height: 75,
+    borderRadius: 40,
+    backgroundColor: '#F0E5F1',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+
+  avatarTexto: {
+    fontSize: 40,
+    color: '#4D315C',
+  },
+
+  nombre: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#4D315C',
+  },
+
+  usuario: {
+    fontSize: 12,
+    color: '#777777',
+    marginTop: 5,
+  },
+
+  estadisticas: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 18,
+  },
+
+  tarjetaEstadistica: {
+    width: '31%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    paddingVertical: 18,
+    alignItems: 'center',
+    elevation: 2,
+  },
+
+  numero: {
+    fontSize: 23,
+    fontWeight: 'bold',
+    color: '#4D315C',
+  },
+
+  detalle: {
+    fontSize: 11,
+    color: '#777777',
+    marginTop: 5,
+  },
+
+  seccion: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginTop: 24,
+    marginBottom: 13,
+  },
+
+  panel: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 17,
+    elevation: 2,
+  },
+
+  descripcion: {
+    fontSize: 12,
+    color: '#777777',
+    marginBottom: 15,
+  },
+
+  listaHabilidades: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 9,
+  },
+
+  habilidad: {
+    backgroundColor: '#F0E5F1',
+    borderRadius: 20,
+    paddingHorizontal: 13,
+    paddingVertical: 9,
+  },
+
+  habilidadTexto: {
+    fontSize: 12,
+    color: '#4D315C',
+    fontWeight: 'bold',
+  },
+
+  botonAgregar: {
+    borderWidth: 1,
+    borderColor: '#4D315C',
+    borderRadius: 25,
+    paddingVertical: 12,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+
+  textoAgregar: {
+    fontSize: 12,
+    color: '#4D315C',
+    fontWeight: 'bold',
+  },
+
+  opcion: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 12,
+  },
+
+  opcionTexto: {
+    fontSize: 13,
+    color: '#4D315C',
+    fontWeight: 'bold',
+  },
+
+  flecha: {
+    fontSize: 22,
+    color: '#4D315C',
+  },
+
+  linea: {
+    height: 1,
+    backgroundColor: '#F0E5F1',
+  },
+
+  botonCerrar: {
+    backgroundColor: '#4D315C',
+    borderRadius: 25,
+    paddingVertical: 14,
+    alignItems: 'center',
+    marginTop: 25,
+  },
+
+  textoCerrar: {
     fontSize: 12,
     color: '#FFFFFF',
+    fontWeight: 'bold',
   },
 });

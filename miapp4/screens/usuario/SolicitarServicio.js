@@ -1,70 +1,86 @@
-import React from 'react';
-import { View, Text, TextInput, Pressable, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
 
-// Pantalla para solicitar servicios
+import React from 'react';
+import { View, Text, TextInput, ScrollView, SafeAreaView, Pressable, StyleSheet } from 'react-native';
+
 export default function SolicitarServicio() {
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
 
-      <View style={styles.encabezado}>
-        <Text style={styles.titulo}>Solicitar servicio</Text>
+        <View style={styles.encabezado}>
+          <Text style={styles.titulo}>Solicitar servicio</Text>
+          <Text style={styles.subtitulo}>
+            Encuentra el apoyo que necesitas
+          </Text>
+        </View>
 
-        <Pressable style={styles.regresar}>
-          <Text style={styles.textoRegresar}>Regresar</Text>
-        </Pressable>
-      </View>
+        <View style={styles.contenido}>
 
-      <ScrollView
-        contentContainerStyle={styles.contenido}
-        showsVerticalScrollIndicator={false}
-      >
+          <Text style={styles.seccion}>
+            Nueva solicitud
+          </Text>
 
-        <View style={styles.formulario}>
-          <View style={styles.campos}>
-            {['Nombre', 'Duración', 'Categoría', 'Precio'].map((campo) => (
-              <View key={campo} style={styles.grupo}>
-                <Text style={styles.etiqueta}>{campo}</Text>
-                <TextInput style={styles.input} />
-              </View>
-            ))}
-          </View>
+          <View style={styles.tarjeta}>
 
-          <View style={styles.derecha}>
-            <View style={styles.imagen}>
-              <Text style={styles.textoImagen}>IMAGEN</Text>
+            <Text style={styles.etiqueta}>
+              Nombre del servicio
+            </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Ej. Curso de Cálculo"
+              placeholderTextColor="#999999"
+            />
+
+            <Text style={styles.etiqueta}>
+              Categoría
+            </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Ej. Matemáticas"
+              placeholderTextColor="#999999"
+            />
+
+            <Text style={styles.etiqueta}>
+              Duración
+            </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Ej. 2 horas"
+              placeholderTextColor="#999999"
+            />
+
+            <Text style={styles.etiqueta}>
+              Descripción
+            </Text>
+            <TextInput
+              style={styles.descripcion}
+              placeholder="Describe el servicio que necesitas..."
+              placeholderTextColor="#999999"
+              multiline
+            />
+
+            <View style={styles.botones}>
+              <Pressable style={styles.botonSolicitar}>
+                <Text style={styles.textoSolicitar}>
+                  Solicitar
+                </Text>
+              </Pressable>
+
+              <Pressable style={styles.botonCancelar}>
+                <Text style={styles.textoCancelar}>
+                  Cancelar
+                </Text>
+              </Pressable>
             </View>
 
-            <Text style={styles.descripcion}>DESCRIPCIÓN</Text>
           </View>
+
         </View>
-
-        <View style={styles.botones}>
-          <Pressable style={styles.boton}>
-            <Text style={styles.textoBoton}>Solicitar</Text>
-          </Pressable>
-
-          <Pressable style={styles.boton}>
-            <Text style={styles.textoBoton}>Cancelar</Text>
-          </Pressable>
-        </View>
-
-        <View style={styles.horas}>
-          <Text style={styles.tituloHoras}>
-            Total de horas{'\n'}agregado
-          </Text>
-          <Text style={styles.reloj}>◷+</Text>
-        </View>
-
-        <View style={styles.total}>
-          <Text style={styles.textoTotal}>20 hrs agregadas</Text>
-        </View>
-
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -72,154 +88,104 @@ const styles = StyleSheet.create({
   },
 
   encabezado: {
-    height: 60,
     backgroundColor: '#4D315C',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingLeft: 15,
-    paddingRight: 10,
+    padding: 25,
+    paddingVertical: 30,
   },
 
   titulo: {
-    fontSize: 15,
-    fontWeight: '500',
+    fontSize: 25,
+    fontWeight: 'bold',
     color: '#FFFFFF',
-    flexShrink: 1,
-    marginRight: 10,
   },
 
-  regresar: {
-    backgroundColor: '#FFFEE4',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textoRegresar: {
+  subtitulo: {
     fontSize: 12,
-    color: '#4D315C',
-    fontWeight: '500',
+    color: '#EADCEB',
+    marginTop: 5,
   },
 
   contenido: {
-    flexGrow: 1,
-    paddingHorizontal: 15,
-    paddingTop: 15,
-    paddingBottom: 25,
+    padding: 18,
   },
 
-  formulario: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  seccion: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginBottom: 15,
   },
 
-  campos: {
-    width: '43%',
-  },
-
-  grupo: {
-    marginBottom: 22,
-    alignItems: 'center',
+  tarjeta: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 20,
+    elevation: 2,
   },
 
   etiqueta: {
-    fontSize: 10,
-    color: '#222222',
-    marginBottom: 3,
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginBottom: 8,
   },
 
   input: {
-    width: '100%',
-    height: 29,
+    backgroundColor: '#FAF8FA',
     borderWidth: 1,
-    borderColor: '#8B728E',
-    borderRadius: 20,
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 10,
-    fontSize: 12,
-    color: '#222222',
-  },
-
-  derecha: {
-    width: '48%',
-    alignItems: 'center',
-  },
-
-  imagen: {
-    width: '100%',
-    height: 135,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#8B728E',
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textoImagen: {
-    fontSize: 11,
-    color: '#222222',
+    borderColor: '#E4D7E6',
+    borderRadius: 10,
+    padding: 12,
+    fontSize: 13,
+    color: '#333333',
+    marginBottom: 18,
   },
 
   descripcion: {
-    fontSize: 15,
-    color: '#222222',
-    marginTop: 18,
+    backgroundColor: '#FAF8FA',
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    borderRadius: 10,
+    padding: 12,
+    height: 90,
+    textAlignVertical: 'top',
+    fontSize: 13,
+    color: '#333333',
+    marginBottom: 20,
   },
 
   botones: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    gap: 18,
-    marginTop: 15,
-  },
-
-  boton: {
-    backgroundColor: '#4D315C',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 9,
-  },
-
-  textoBoton: {
-    fontSize: 11,
-    color: '#FFFFFF',
-  },
-
-  horas: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    marginTop: 35,
     gap: 10,
   },
 
-  tituloHoras: {
-    fontSize: 16,
-    color: '#4D315C',
-    textAlign: 'center',
-  },
-
-  reloj: {
-    fontSize: 25,
-    color: '#4D315C',
-  },
-
-  total: {
+  botonSolicitar: {
+    flex: 1,
     backgroundColor: '#4D315C',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    alignSelf: 'flex-end',
-    marginTop: 10,
-    marginRight: 15,
+    borderRadius: 25,
+    paddingVertical: 13,
+    alignItems: 'center',
   },
 
-  textoTotal: {
+  textoSolicitar: {
     fontSize: 12,
+    fontWeight: 'bold',
     color: '#FFFFFF',
+  },
+
+  botonCancelar: {
+    flex: 1,
+    backgroundColor: '#F0E5F1',
+    borderRadius: 25,
+    paddingVertical: 13,
+    alignItems: 'center',
+  },
+
+  textoCancelar: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#4D315C',
   },
 });

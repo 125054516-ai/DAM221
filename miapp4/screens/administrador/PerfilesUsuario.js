@@ -1,91 +1,134 @@
+
 import React from 'react';
-import { View, Text, Pressable, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, SafeAreaView, Pressable, StyleSheet } from 'react-native';
 
-// Pantalla de perfiles de usuario
 export default function PerfilesUsuario() {
-  const historial = [1, 2];
-
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
 
-      <View style={styles.encabezado}>
-        <Text style={styles.titulo}>
-          Banco de Tiempo{'\n'}y Talento
-        </Text>
+        <View style={styles.encabezado}>
+          <Text style={styles.titulo}>Perfil de usuario</Text>
+          <Text style={styles.subtitulo}>
+            Administración de usuarios KRONA
+          </Text>
+        </View>
 
-        <Pressable style={styles.regresar}>
-          <Text style={styles.textoRegresar}>Regresar</Text>
-        </Pressable>
-      </View>
+        <View style={styles.contenido}>
 
-      <ScrollView
-        contentContainerStyle={styles.contenido}
-        showsVerticalScrollIndicator={false}
-      >
+          <View style={styles.tarjetaPerfil}>
+            <View style={styles.foto}>
+              <Text style={styles.fotoTexto}></Text>
+            </View>
 
-        <View style={styles.perfil}>
-          <View style={styles.imagenPerfil}>
-            <Text style={styles.textoImagen}>IMAGEN</Text>
-          </View>
-
-          <View style={styles.datos}>
-            <Text style={styles.textoDato}>ID:125053572</Text>
-            <Text style={styles.textoDato}>Nombre:</Text>
-            <Text style={styles.textoDato}>
+            <Text style={styles.nombre}>
               Ulises Tonatiuh
             </Text>
-            <Text style={styles.textoDato}>
-              Acatecalt Ramirez
+
+            <Text style={styles.usuario}>
+              Usuario registrado
             </Text>
-            <Text style={styles.textoDato}>Edad:19</Text>
-            <Text style={styles.textoDato}>Contacto:</Text>
-            <Text style={styles.textoDato}>4436728745</Text>
+
+            <View style={styles.estado}>
+              <Text style={styles.estadoTexto}>
+                Cuenta activa
+              </Text>
+            </View>
           </View>
-        </View>
 
-        <View style={styles.creditos}>
-          <Text style={styles.textoCreditos}>100 creditos</Text>
-          <View style={styles.linea} />
-        </View>
+          <Text style={styles.seccion}>Información personal</Text>
 
-        <Text style={styles.historialTitulo}>HISTORIAL</Text>
-
-        {historial.map((item) => (
-          <View key={item} style={styles.tarjeta}>
-
-            <View style={styles.imagenHistorial}>
-              <Text style={styles.textoImagen}>IMAGEN</Text>
+          <View style={styles.panel}>
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>ID de usuario</Text>
+              <Text style={styles.valor}>125053572</Text>
             </View>
 
-            <View style={styles.opciones}>
-              <Pressable style={styles.boton}>
-                <Text style={styles.textoBoton}>Perfil usuario</Text>
-              </Pressable>
+            <View style={styles.linea} />
 
-              <Pressable style={styles.boton}>
-                <Text style={styles.textoBoton}>Supervisar</Text>
-              </Pressable>
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>Nombre</Text>
+              <Text style={styles.valor}>Ulises Tonatiuh</Text>
             </View>
 
+            <View style={styles.linea} />
+
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>Edad</Text>
+              <Text style={styles.valor}>19 años</Text>
+            </View>
+
+            <View style={styles.linea} />
+
+            <View style={styles.fila}>
+              <Text style={styles.etiqueta}>Contacto</Text>
+              <Text style={styles.valor}>ulises@krona.com</Text>
+            </View>
           </View>
-        ))}
 
-        <View style={styles.botonesFinales}>
-          <Pressable style={styles.botonFinal}>
-            <Text style={styles.textoBoton}>Eliminar Cuenta</Text>
-          </Pressable>
+          <Text style={styles.seccion}>Actividad del usuario</Text>
 
-          <Pressable style={styles.botonFinal}>
-            <Text style={styles.textoBoton}>Bloquear Cuenta</Text>
-          </Pressable>
+          <View style={styles.estadisticas}>
+            <View style={styles.tarjeta}>
+              <Text style={styles.numero}>100</Text>
+              <Text style={styles.detalle}>Créditos</Text>
+            </View>
+
+            <View style={styles.tarjeta}>
+              <Text style={styles.numero}>4</Text>
+              <Text style={styles.detalle}>Cursos</Text>
+            </View>
+
+            <View style={styles.tarjeta}>
+              <Text style={styles.numero}>5.0</Text>
+              <Text style={styles.detalle}>Calificación</Text>
+            </View>
+          </View>
+
+          <Text style={styles.seccion}>Historial reciente</Text>
+
+          <View style={styles.panel}>
+            <View style={styles.historial}>
+              <Text style={styles.historialTitulo}>
+                Curso de Programación
+              </Text>
+              <Text style={styles.historialDetalle}>
+                Servicio completado
+              </Text>
+            </View>
+
+            <View style={styles.linea} />
+
+            <View style={styles.historial}>
+              <Text style={styles.historialTitulo}>
+                Curso de Matemáticas
+              </Text>
+              <Text style={styles.historialDetalle}>
+                Solicitud realizada
+              </Text>
+            </View>
+          </View>
+
+          <View style={styles.botones}>
+            <Pressable style={styles.botonEliminar}>
+              <Text style={styles.textoEliminar}>
+                Eliminar cuenta
+              </Text>
+            </Pressable>
+
+            <Pressable style={styles.botonBloquear}>
+              <Text style={styles.textoBloquear}>
+                Bloquear cuenta
+              </Text>
+            </Pressable>
+          </View>
+
         </View>
-
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -93,152 +136,194 @@ const styles = StyleSheet.create({
   },
 
   encabezado: {
-    height: 80,
     backgroundColor: '#4D315C',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingLeft: 12,
+    padding: 25,
+    paddingVertical: 30,
   },
 
   titulo: {
-    fontSize: 14,
+    fontSize: 25,
+    fontWeight: 'bold',
     color: '#FFFFFF',
-    textAlign: 'center',
-    flexShrink: 1,
-    marginRight: 10,
   },
 
-  regresar: {
-    backgroundColor: '#FFFEE4',
-    height: 80,
-    paddingHorizontal: 16,
-    borderTopLeftRadius: 15,
-    borderBottomLeftRadius: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textoRegresar: {
-    fontSize: 13,
-    color: '#222222',
-  },
-
-  contenido: {
-    paddingHorizontal: 12,
-    paddingTop: 25,
-    paddingBottom: 25,
-  },
-
-  perfil: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-  },
-
-  imagenPerfil: {
-    width: 103,
-    height: 116,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#777777',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textoImagen: {
-    fontSize: 9,
-    color: '#AAAAAA',
-  },
-
-  datos: {
-    width: '53%',
-  },
-
-  textoDato: {
-    fontSize: 13,
-    color: '#222222',
-    lineHeight: 18,
-  },
-
-  creditos: {
-    marginTop: 12,
-    marginLeft: 45,
-    alignSelf: 'flex-start',
-  },
-
-  textoCreditos: {
-    fontSize: 13,
-    color: '#222222',
-  },
-
-  linea: {
-    height: 4,
-    width: 85,
-    backgroundColor: '#4D315C',
-    marginTop: 4,
-  },
-
-  historialTitulo: {
-    fontSize: 14,
-    color: '#222222',
-    textAlign: 'center',
-    marginTop: 15,
-    marginBottom: 10,
-  },
-
-  tarjeta: {
-    height: 105,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#777777',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    marginBottom: 8,
-    paddingHorizontal: 10,
-  },
-
-  imagenHistorial: {
-    width: 90,
-    height: 72,
-    borderWidth: 1,
-    borderColor: '#777777',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  opciones: {
-    width: '45%',
-    gap: 10,
-  },
-
-  boton: {
-    backgroundColor: '#4D315C',
-    borderRadius: 18,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-
-  textoBoton: {
-    fontSize: 11,
-    color: '#FFFFFF',
-    textAlign: 'center',
-  },
-
-  botonesFinales: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 8,
+  subtitulo: {
+    fontSize: 12,
+    color: '#EADCEB',
     marginTop: 5,
   },
 
-  botonFinal: {
+  contenido: {
+    padding: 18,
+    paddingBottom: 30,
+  },
+
+  tarjetaPerfil: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 20,
+    alignItems: 'center',
+    elevation: 2,
+  },
+
+  foto: {
+    width: 75,
+    height: 75,
+    borderRadius: 40,
+    backgroundColor: '#F0E5F1',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+
+  fotoTexto: {
+    fontSize: 40,
+    color: '#4D315C',
+  },
+
+  nombre: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#4D315C',
+  },
+
+  usuario: {
+    fontSize: 12,
+    color: '#777777',
+    marginTop: 5,
+  },
+
+  estado: {
+    backgroundColor: '#F0E5F1',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    paddingVertical: 6,
+    marginTop: 12,
+  },
+
+  estadoTexto: {
+    fontSize: 11,
+    color: '#4D315C',
+  },
+
+  seccion: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginTop: 22,
+    marginBottom: 12,
+  },
+
+  panel: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 16,
+  },
+
+  fila: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+
+  etiqueta: {
+    fontSize: 12,
+    color: '#777777',
+  },
+
+  valor: {
+    fontSize: 12,
+    color: '#4D315C',
+    fontWeight: 'bold',
+    textAlign: 'right',
+    flexShrink: 1,
+  },
+
+  linea: {
+    height: 1,
+    backgroundColor: '#F0E5F1',
+  },
+
+  estadisticas: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  tarjeta: {
+    width: '31%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    paddingVertical: 18,
+    alignItems: 'center',
+    elevation: 2,
+  },
+
+  numero: {
+    fontSize: 23,
+    fontWeight: 'bold',
+    color: '#4D315C',
+  },
+
+  detalle: {
+    fontSize: 11,
+    color: '#777777',
+    marginTop: 5,
+  },
+
+  historial: {
+    paddingVertical: 10,
+  },
+
+  historialTitulo: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#4D315C',
+  },
+
+  historialDetalle: {
+    fontSize: 11,
+    color: '#777777',
+    marginTop: 5,
+  },
+
+  botones: {
+    flexDirection: 'row',
+    gap: 10,
+    marginTop: 25,
+  },
+
+  botonEliminar: {
     flex: 1,
     backgroundColor: '#4D315C',
-    borderRadius: 15,
-    paddingVertical: 14,
+    borderRadius: 25,
+    paddingVertical: 13,
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+
+  textoEliminar: {
+    fontSize: 12,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+  },
+
+  botonBloquear: {
+    flex: 1,
+    backgroundColor: '#F0E5F1',
+    borderRadius: 25,
+    paddingVertical: 13,
+    alignItems: 'center',
+  },
+
+  textoBloquear: {
+    fontSize: 12,
+    color: '#4D315C',
+    fontWeight: 'bold',
   },
 });

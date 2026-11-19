@@ -1,109 +1,154 @@
-import React from 'react';
-import { View, Text, Pressable, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
 
-// Cursos de ejemplo
+import React from 'react';
+import { View, Text, ScrollView, SafeAreaView, Pressable, StyleSheet } from 'react-native';
+
 const cursos = [
-  { id: '1', nombre: 'Curso de cálculo', simbolo: '▭' },
-  { id: '2', nombre: 'Curso de aplicaciones web', simbolo: '▣' },
-  { id: '3', nombre: 'Curso de aplicaciones móviles', simbolo: 'ϟ' },
-  { id: '4', nombre: 'Curso de Base de datos', simbolo: '☑' }
+  {
+    id: 1,
+    nombre: 'Curso de Cálculo',
+    categoria: 'Matemáticas',
+    duracion: '2 horas',
+    creditos: 10
+  },
+  {
+    id: 2,
+    nombre: 'Aplicaciones Web',
+    categoria: 'Programación',
+    duracion: '3 horas',
+    creditos: 15
+  },
+  {
+    id: 3,
+    nombre: 'Aplicaciones Móviles',
+    categoria: 'Programación',
+    duracion: '4 horas',
+    creditos: 20
+  },
+  {
+    id: 4,
+    nombre: 'Base de Datos',
+    categoria: 'Programación',
+    duracion: '2 horas',
+    creditos: 10
+  }
 ];
 
-// Pantalla principal
 export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
 
-      <View style={styles.encabezado}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarTexto}>♙</Text>
-        </View>
-
-        <View style={styles.creditos}>
-          <Text style={styles.textoCreditos}>$$$</Text>
-        </View>
-
-        <View style={styles.botonesEncabezado}>
-          <Pressable style={styles.favoritos}>
-            <Text style={styles.textoFavoritos}>♡</Text>
-          </Pressable>
-
-          <Pressable style={styles.agregar}>
-            <Text style={styles.textoAgregar}>+</Text>
-          </Pressable>
-        </View>
-      </View>
-
-      <View style={styles.cuerpo}>
-
-        <View style={styles.menuLateral}>
-          <View style={styles.opcion}>
-            <View style={styles.circulo}>
-              <Text style={styles.icono}>⌂</Text>
+        <View style={styles.encabezado}>
+          <View style={styles.filaSuperior}>
+            <View>
+              <Text style={styles.titulo}>KRONA</Text>
+              <Text style={styles.subtitulo}>
+                Banco de Tiempo y Talento
+              </Text>
             </View>
-            <Text style={styles.textoMenu}>Principal</Text>
+
+            <View style={styles.acciones}>
+              <Pressable style={styles.botonIcono}>
+                <Text style={styles.icono}>♡</Text>
+              </Pressable>
+
+              <Pressable style={styles.botonIcono}>
+                <Text style={styles.icono}>+</Text>
+              </Pressable>
+            </View>
           </View>
 
-          <View style={styles.opcion}>
-            <View style={styles.circulo}>
-              <Text style={styles.icono}>▣</Text>
-            </View>
-            <Text style={styles.textoMenu}>Servicio</Text>
-          </View>
-
-          <View style={styles.opcion}>
-            <View style={styles.circulo}>
-              <Text style={styles.icono}>↺</Text>
-            </View>
-            <Text style={styles.textoMenu}>Historial</Text>
-          </View>
-
-          <View style={styles.opcion}>
-            <View style={styles.circulo}>
-              <Text style={styles.icono}>♙</Text>
-            </View>
-            <Text style={styles.textoMenu}>Perfil</Text>
+          <View style={styles.creditos}>
+            <Text style={styles.creditosEtiqueta}>
+              Mis créditos disponibles
+            </Text>
+            <Text style={styles.creditosNumero}>54 hrs</Text>
           </View>
         </View>
 
-        <View style={styles.principal}>
-          <ScrollView
-            contentContainerStyle={styles.contenido}
-            showsVerticalScrollIndicator={false}
-          >
+        <View style={styles.contenido}>
 
-            <View style={styles.cuadricula}>
-              {cursos.map((curso) => (
-                <View key={curso.id} style={styles.curso}>
-                  <View style={styles.imagenCurso}>
-                    <Text style={styles.simbolo}>{curso.simbolo}</Text>
-                  </View>
+          <View style={styles.bienvenida}>
+            <Text style={styles.bienvenidaTitulo}>
+              ¡Bienvenido a KRONA!
+            </Text>
 
-                  <Text style={styles.nombreCurso}>
-                    {curso.nombre}
+            <Text style={styles.bienvenidaTexto}>
+              Aprende nuevas habilidades y comparte tus conocimientos.
+            </Text>
+          </View>
+
+          <Text style={styles.seccion}>Mi espacio</Text>
+
+          <View style={styles.menu}>
+            <Pressable style={styles.opcion}>
+              <Text style={styles.opcionTexto}>Principal</Text>
+            </Pressable>
+
+            <Pressable style={styles.opcion}>
+              <Text style={styles.opcionTexto}>Servicios</Text>
+            </Pressable>
+
+            <Pressable style={styles.opcion}>
+              <Text style={styles.opcionTexto}>Historial</Text>
+            </Pressable>
+
+            <Pressable style={styles.opcion}>
+              <Text style={styles.opcionTexto}>Perfil</Text>
+            </Pressable>
+          </View>
+
+          <View style={styles.filaSeccion}>
+            <Text style={styles.seccion}>Cursos disponibles</Text>
+            <Text style={styles.verTodos}>Ver todos</Text>
+          </View>
+
+          {cursos.map((curso) => (
+            <View key={curso.id} style={styles.tarjeta}>
+
+              <View style={styles.filaCurso}>
+                <Text style={styles.nombreCurso}>
+                  {curso.nombre}
+                </Text>
+
+                <Text style={styles.corazon}>♡</Text>
+              </View>
+
+              <Text style={styles.categoria}>
+                {curso.categoria}
+              </Text>
+
+              <View style={styles.linea} />
+
+              <View style={styles.filaDatos}>
+                <View>
+                  <Text style={styles.etiqueta}>Duración</Text>
+                  <Text style={styles.valor}>{curso.duracion}</Text>
+                </View>
+
+                <View>
+                  <Text style={styles.etiqueta}>Costo</Text>
+                  <Text style={styles.valor}>
+                    {curso.creditos} créditos
                   </Text>
                 </View>
-              ))}
-            </View>
+              </View>
 
-            <View style={styles.botones}>
-              <Pressable style={styles.boton}>
-                <Text style={styles.textoBoton}>Aceptar</Text>
+              <Pressable style={styles.botonCurso}>
+                <Text style={styles.botonCursoTexto}>
+                  Solicitar servicio
+                </Text>
               </Pressable>
 
-              <Pressable style={styles.boton}>
-                <Text style={styles.textoBoton}>Rechazar</Text>
-              </Pressable>
             </View>
+          ))}
 
-          </ScrollView>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
-// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -111,175 +156,205 @@ const styles = StyleSheet.create({
   },
 
   encabezado: {
-    height: 65,
     backgroundColor: '#4D315C',
+    padding: 22,
+    paddingTop: 30,
+    paddingBottom: 25,
+  },
+
+  filaSuperior: {
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-  },
-
-  avatar: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
 
-  avatarTexto: {
-    fontSize: 28,
-    color: '#222222',
+  titulo: {
+    fontSize: 27,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
   },
 
-  creditos: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 3,
-    marginLeft: 20,
-  },
-
-  textoCreditos: {
+  subtitulo: {
     fontSize: 11,
-    color: '#222222',
+    color: '#EADCEB',
+    marginTop: 5,
   },
 
-  botonesEncabezado: {
+  acciones: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 'auto',
     gap: 8,
   },
 
-  favoritos: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  textoFavoritos: {
-    fontSize: 25,
-    color: '#4D315C',
-  },
-
-  agregar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  textoAgregar: {
-    fontSize: 22,
-    color: '#222222',
-  },
-
-  cuerpo: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-
-  menuLateral: {
-    width: '28%',
-    borderRightWidth: 1,
-    borderRightColor: '#4D315C',
-    justifyContent: 'space-around',
-    paddingHorizontal: 4,
-  },
-
-  opcion: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  circulo: {
-    width: 25,
-    height: 25,
-    borderRadius: 13,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#4D315C',
+  botonIcono: {
+    width: 38,
+    height: 38,
+    borderRadius: 20,
+    backgroundColor: '#694A78',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   icono: {
-    fontSize: 17,
-    color: '#222222',
+    fontSize: 24,
+    color: '#FFFFFF',
   },
 
-  textoMenu: {
-    fontSize: 9,
-    color: '#222222',
-    marginLeft: 3,
-    flexShrink: 1,
+  creditos: {
+    backgroundColor: '#694A78',
+    borderRadius: 15,
+    padding: 17,
+    marginTop: 22,
   },
 
-  principal: {
-    flex: 1,
+  creditosEtiqueta: {
+    fontSize: 12,
+    color: '#EADCEB',
+  },
+
+  creditosNumero: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginTop: 6,
   },
 
   contenido: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
-    paddingVertical: 20,
-    paddingHorizontal: 8,
+    padding: 18,
+    paddingBottom: 30,
   },
 
-  cuadricula: {
+  bienvenida: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 18,
+    elevation: 2,
+  },
+
+  bienvenidaTitulo: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: '#4D315C',
+  },
+
+  bienvenidaTexto: {
+    fontSize: 12,
+    color: '#777777',
+    marginTop: 7,
+    lineHeight: 19,
+  },
+
+  seccion: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginTop: 23,
+    marginBottom: 13,
+  },
+
+  menu: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    rowGap: 55,
+    gap: 10,
   },
 
-  curso: {
-    width: '47%',
-  },
-
-  imagenCurso: {
-    height: 85,
+  opcion: {
+    width: '48%',
     backgroundColor: '#FFFFFF',
+    borderRadius: 13,
     borderWidth: 1,
-    borderColor: '#8B728E',
-    justifyContent: 'center',
+    borderColor: '#E4D7E6',
+    paddingVertical: 15,
     alignItems: 'center',
   },
 
-  simbolo: {
-    fontSize: 34,
-    color: '#222222',
+  opcionTexto: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#4D315C',
+  },
+
+  filaSeccion: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  verTodos: {
+    fontSize: 11,
+    color: '#4D315C',
+    marginTop: 10,
+  },
+
+  tarjeta: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 17,
+    marginBottom: 14,
+    elevation: 2,
+  },
+
+  filaCurso: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   nombreCurso: {
-    fontSize: 9,
-    color: '#222222',
-    marginTop: 6,
-    lineHeight: 12,
+    flex: 1,
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#4D315C',
   },
 
-  botones: {
+  corazon: {
+    fontSize: 25,
+    color: '#4D315C',
+  },
+
+  categoria: {
+    fontSize: 11,
+    color: '#777777',
+    marginTop: 5,
+  },
+
+  linea: {
+    height: 1,
+    backgroundColor: '#F0E5F1',
+    marginVertical: 15,
+  },
+
+  filaDatos: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 35,
-    marginBottom: 10,
   },
 
-  boton: {
+  etiqueta: {
+    fontSize: 11,
+    color: '#777777',
+  },
+
+  valor: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginTop: 5,
+  },
+
+  botonCurso: {
     backgroundColor: '#4D315C',
     borderRadius: 25,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingVertical: 12,
+    alignItems: 'center',
+    marginTop: 18,
   },
 
-  textoBoton: {
+  botonCursoTexto: {
+    fontSize: 12,
+    fontWeight: 'bold',
     color: '#FFFFFF',
-    fontSize: 11,
   },
 });

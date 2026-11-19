@@ -24,7 +24,7 @@ const Music = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Selecciona un género musical:</Text>
       <Button title="Rock" onPress={() => handleOptionSelect('rock')} />
       <Button title="Pop" onPress={() => handleOptionSelect('pop')} />

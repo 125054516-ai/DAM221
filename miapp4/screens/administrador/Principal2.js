@@ -1,84 +1,125 @@
+
 import React from 'react';
-import { View, Text, Pressable, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, SafeAreaView, Pressable, StyleSheet } from 'react-native';
 
-// Segunda pantalla principal del administrador
+const usuarios = [
+  { id: 1, nombre: 'Diego', creditos: 54 },
+  { id: 2, nombre: 'Bersa', creditos: 80 },
+  { id: 3, nombre: 'Ulises', creditos: 100 }
+];
+
 export default function Principal2() {
-  const usuarios = [1, 2, 3];
-
   return (
     <SafeAreaView style={styles.container}>
 
       <View style={styles.encabezado}>
-        <View style={styles.logo}>
-          <Text style={styles.textoLogo}>KRONA</Text>
-        </View>
-
-        <Text style={styles.titulo}>
-          Banco de Tiempo{'\n'}y Talento
+        <Text style={styles.titulo}>KRONA</Text>
+        <Text style={styles.subtitulo}>
+          Panel de administración
         </Text>
       </View>
 
-      <View style={styles.cuerpo}>
+      <View style={styles.principal}>
 
-        <View style={styles.menuLateral}>
-          <View style={styles.opcion}>
-            <Text style={styles.textoMenu}>Editar usuario</Text>
-          </View>
+        <View style={styles.lateral}>
+          <Text style={styles.menuTitulo}>MENÚ</Text>
 
-          <View style={styles.categorias}>
-            <Text style={styles.textoMenu}>
-              Categoria{'\n'}
-              O MATE{'\n'}
-              O CIENCIA{'\n'}
-              O PROGRA
+          <Pressable style={styles.opcion}>
+            <Text style={styles.opcionTexto}>
+              Editar usuario
             </Text>
-          </View>
+          </Pressable>
 
-          <View style={styles.opcion}>
-            <Text style={styles.textoMenu}>Reporte</Text>
-          </View>
+          <Text style={styles.categoriaTitulo}>
+            Categorías
+          </Text>
 
-          <View style={styles.espacioMenu} />
+          <Pressable style={styles.opcion}>
+            <Text style={styles.opcionTexto}>
+              Matemáticas
+            </Text>
+          </Pressable>
+
+          <Pressable style={styles.opcion}>
+            <Text style={styles.opcionTexto}>
+              Ciencias
+            </Text>
+          </Pressable>
+
+          <Pressable style={styles.opcion}>
+            <Text style={styles.opcionTexto}>
+              Programación
+            </Text>
+          </Pressable>
+
+          <View style={styles.lineaMenu} />
+
+          <Pressable style={styles.opcion}>
+            <Text style={styles.opcionTexto}>
+              Reportes
+            </Text>
+          </Pressable>
         </View>
 
         <ScrollView
-          style={styles.areaUsuarios}
-          contentContainerStyle={styles.lista}
+          style={styles.contenido}
           showsVerticalScrollIndicator={false}
         >
 
+          <Text style={styles.seccion}>
+            Usuarios registrados
+          </Text>
+
+          <View style={styles.resumen}>
+            <Text style={styles.resumenTexto}>
+              Total de usuarios
+            </Text>
+            <Text style={styles.resumenNumero}>
+              {usuarios.length}
+            </Text>
+          </View>
+
+          <Text style={styles.seccion}>
+            Lista de usuarios
+          </Text>
+
           {usuarios.map((usuario) => (
-            <View key={usuario} style={styles.tarjeta}>
+            <View key={usuario.id} style={styles.tarjeta}>
 
-              <View style={styles.imagen}>
-                <Text style={styles.textoImagen}>IMAGEN</Text>
-              </View>
+              <Text style={styles.nombre}>
+                {usuario.nombre}
+              </Text>
 
-              <View style={styles.botones}>
-                <Pressable style={styles.boton}>
-                  <Text style={styles.textoBoton}>Perfil usuario</Text>
-                </Pressable>
+              <Text style={styles.estado}>
+                Cuenta activa
+              </Text>
 
-                <Pressable style={styles.boton}>
-                  <Text style={styles.textoBoton}>Supervisar</Text>
-                </Pressable>
+              <View style={styles.linea} />
 
-                <Pressable style={styles.boton}>
-                  <Text style={styles.textoBoton}>Eliminar</Text>
-                </Pressable>
-              </View>
+              <Text style={styles.detalle}>
+                Créditos: {usuario.creditos} hrs
+              </Text>
+
+              <Text style={styles.detalle}>
+                ID: #{usuario.id}
+              </Text>
+
+              <Pressable style={styles.boton}>
+                <Text style={styles.botonTexto}>
+                  Ver perfil
+                </Text>
+              </Pressable>
 
             </View>
           ))}
 
         </ScrollView>
-
       </View>
+
     </SafeAreaView>
   );
 }
 
-// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -86,124 +127,148 @@ const styles = StyleSheet.create({
   },
 
   encabezado: {
-    height: 83,
     backgroundColor: '#4D315C',
+    padding: 22,
+  },
+
+  titulo: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
+
+  subtitulo: {
+    fontSize: 12,
+    color: '#EADCEB',
+    marginTop: 5,
+  },
+
+  principal: {
+    flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
   },
 
-  logo: {
-    width: '37%',
-    height: '100%',
-    backgroundColor: '#FFFEE4',
-    alignItems: 'center',
-    justifyContent: 'center',
+  lateral: {
+    width: 115,
+    backgroundColor: '#F0E5F1',
+    padding: 10,
+    borderRightWidth: 1,
+    borderRightColor: '#E4D7E6',
+  },
+
+  menuTitulo: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginBottom: 20,
+    marginTop: 12,
+  },
+
+  categoriaTitulo: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginTop: 20,
+    marginBottom: 10,
+  },
+
+  opcion: {
+    paddingVertical: 12,
+    paddingHorizontal: 5,
+    borderRadius: 8,
+  },
+
+  opcionTexto: {
+    fontSize: 11,
+    color: '#4D315C',
+    fontWeight: 'bold',
+  },
+
+  lineaMenu: {
+    height: 1,
+    backgroundColor: '#D8C6DB',
+    marginVertical: 15,
+  },
+
+  contenido: {
+    flex: 1,
+    padding: 12,
+  },
+
+  seccion: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginBottom: 13,
+    marginTop: 10,
+  },
+
+  resumen: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 13,
     borderWidth: 1,
-    borderColor: '#8B728E',
+    borderColor: '#E4D7E6',
+    padding: 15,
+    marginBottom: 15,
   },
 
-  textoLogo: {
-    fontSize: 17,
+  resumenTexto: {
+    fontSize: 11,
+    color: '#777777',
+  },
+
+  resumenNumero: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginTop: 5,
+  },
+
+  tarjeta: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 13,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 13,
+    marginBottom: 13,
+    elevation: 2,
+  },
+
+  nombre: {
+    fontSize: 15,
     fontWeight: 'bold',
     color: '#4D315C',
   },
 
-  titulo: {
-    flex: 1,
-    fontSize: 14,
-    color: '#FFFFFF',
-    textAlign: 'center',
+  estado: {
+    fontSize: 11,
+    color: '#777777',
+    marginTop: 5,
   },
 
-  cuerpo: {
-    flex: 1,
-    flexDirection: 'row',
+  linea: {
+    height: 1,
+    backgroundColor: '#F0E5F1',
+    marginVertical: 12,
   },
 
-  menuLateral: {
-    width: '37%',
-    backgroundColor: '#FFFEE4',
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderColor: '#8B728E',
-  },
-
-  opcion: {
-    height: 52,
-    borderBottomWidth: 1,
-    borderColor: '#8B728E',
-    justifyContent: 'center',
-    paddingHorizontal: 5,
-  },
-
-  categorias: {
-    height: 120,
-    borderBottomWidth: 1,
-    borderColor: '#8B728E',
-    justifyContent: 'center',
-    paddingHorizontal: 5,
-  },
-
-  textoMenu: {
-    fontSize: 12,
-    color: '#222222',
-  },
-
-  espacioMenu: {
-    flex: 1,
-  },
-
-  areaUsuarios: {
-    flex: 1,
-  },
-
-  lista: {
-    paddingHorizontal: 10,
-    paddingTop: 12,
-    paddingBottom: 30,
-  },
-
-  tarjeta: {
-    height: 138,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#555555',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 8,
-    marginBottom: 15,
-  },
-
-  imagen: {
-    width: '34%',
-    height: 73,
-    borderWidth: 1,
-    borderColor: '#777777',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textoImagen: {
-    fontSize: 8,
-    color: '#AAAAAA',
-  },
-
-  botones: {
-    width: '62%',
-    gap: 6,
+  detalle: {
+    fontSize: 11,
+    color: '#555555',
+    marginBottom: 7,
   },
 
   boton: {
     backgroundColor: '#4D315C',
-    borderRadius: 18,
+    borderRadius: 20,
     paddingVertical: 10,
     alignItems: 'center',
+    marginTop: 10,
   },
 
-  textoBoton: {
-    fontSize: 10,
+  botonTexto: {
+    fontSize: 11,
+    fontWeight: 'bold',
     color: '#FFFFFF',
-    textAlign: 'center',
   },
 });

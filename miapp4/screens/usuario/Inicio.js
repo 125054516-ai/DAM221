@@ -25,7 +25,7 @@ export default function Inicio() {
 
           <View style={styles.formulario}>
             <View style={styles.grupo}>
-              <TextInput
+              <Text
                 style={styles.input}
                 placeholder="Correo electrónico"
                 placeholderTextColor="#888888"
@@ -36,7 +36,7 @@ export default function Inicio() {
             </View>
 
             <View style={styles.grupo}>
-              <TextInput
+              <Text
                 style={styles.input}
                 placeholder="Contraseña"
                 placeholderTextColor="#888888"

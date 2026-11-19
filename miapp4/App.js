@@ -15,10 +15,11 @@ import Principal2 from './screens/administrador/Principal2';
 import PerfilesUsuario from './screens/administrador/PerfilesUsuario';
 import Categorias from './screens/administrador/Categorias';
 import Reportes1 from './screens/administrador/Reportes1';
-import Reportes2 from './screens/administrador/Reportes2';
+import Solicitar from './screens/administrador/Solicitar';
 import Supervisar from './screens/administrador/Supervisar';
-
-
+import Dashboard from './screens/administrador/Desboard';
+import Favoritos from './screens/usuario/Favoritos';
+import Calificaciones from './screens/administrador/Calificaciones';
 
 // Pantalla principal
 export default function App() {
@@ -64,11 +65,20 @@ export default function App() {
     if (pantalla === 'Reportes1') {
     return <Reportes1 />;
     }
-    if (pantalla === 'Reportes2') {
-    return <Reportes2 />;
+    if (pantalla === 'Solicitar') {
+    return <Solicitar />;
     }
     if (pantalla === 'Supervisar') {
     return <Supervisar />;
+    }
+    if (pantalla === 'Dashboard') {
+    return <Dashboard />;
+    }
+    if (pantalla === 'Favoritos') {
+    return <Favoritos />;
+    }
+    if (pantalla === 'Calificaciones') {
+    return <Calificaciones />;
     }
     if (pantalla === 'Login') {
       return <Inicio />;

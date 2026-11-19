@@ -10,7 +10,8 @@ const usuario = [
   ['Solicitar servicio', 'SolicitarServicio'],
   ['Publicar servicio', 'PublicarServicio'],
   ['Cursos', 'Cursos'],
-  ['Recompensas', 'Recompensas']
+  ['Recompensas', 'Recompensas'],
+  ['Favoritos', 'Favoritos']
 ];
 
 // Interfaces de administrador
@@ -20,8 +21,10 @@ const administrador = [
   ['Perfiles de usuario', 'PerfilesUsuario'],
   ['Categorías', 'Categorias'],
   ['Reportes 1', 'Reportes1'],
-  ['Reportes 2', 'Reportes2'],
-  ['Supervisar', 'Supervisar']
+  ['Solicitar', 'Solicitar'],
+  ['Supervisar', 'Supervisar'],
+  ['Dashboard', 'Dashboard'],
+  ['Calificaciones', 'Calificaciones'],
 ];
 
 // Menú principal

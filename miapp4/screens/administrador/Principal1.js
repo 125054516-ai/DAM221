@@ -1,58 +1,79 @@
+
 import React from 'react';
-import { View, Text, Pressable, ScrollView, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, SafeAreaView, Pressable, StyleSheet } from 'react-native';
 
-// Pantalla principal del administrador
+const opciones = [
+  {
+    id: 1,
+    titulo: 'Perfil de usuario',
+    descripcion: 'Consulta la información de los usuarios registrados.',
+    boton: 'Ver perfiles'
+  },
+  {
+    id: 2,
+    titulo: 'Supervisar servicios',
+    descripcion: 'Revisa los cursos y servicios publicados.',
+    boton: 'Supervisar'
+  },
+  {
+    id: 3,
+    titulo: 'Eliminar contenido',
+    descripcion: 'Administra los registros y contenidos del sistema.',
+    boton: 'Administrar'
+  }
+];
+
 export default function Principal1() {
-  const usuarios = [1, 2, 3];
-
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
 
-      <View style={styles.encabezado}>
-        <Text style={styles.menu}>☰</Text>
+        <View style={styles.encabezado}>
+          <Text style={styles.titulo}>KRONA</Text>
+          <Text style={styles.subtitulo}>
+            Banco de Tiempo y Talento
+          </Text>
+        </View>
 
-        <Text style={styles.titulo}>
-          Banco de Tiempo{'\n'}y Talento
-        </Text>
+        <View style={styles.contenido}>
 
-        <View style={styles.espacio} />
-      </View>
-
-      <ScrollView
-        contentContainerStyle={styles.contenido}
-        showsVerticalScrollIndicator={false}
-      >
-
-        {usuarios.map((usuario) => (
-          <View key={usuario} style={styles.tarjeta}>
-
-            <View style={styles.imagen}>
-              <Text style={styles.textoImagen}>IMAGEN</Text>
-            </View>
-
-            <View style={styles.opciones}>
-              <Pressable style={styles.boton}>
-                <Text style={styles.textoBoton}>Perfil usuario</Text>
-              </Pressable>
-
-              <Pressable style={styles.boton}>
-                <Text style={styles.textoBoton}>Supervisar</Text>
-              </Pressable>
-
-              <Pressable style={styles.boton}>
-                <Text style={styles.textoBoton}>Eliminar</Text>
-              </Pressable>
-            </View>
-
+          <View style={styles.bienvenida}>
+            <Text style={styles.bienvenidaTitulo}>
+              Panel de administrador
+            </Text>
+            <Text style={styles.bienvenidaTexto}>
+              Gestiona los usuarios y servicios de KRONA.
+            </Text>
           </View>
-        ))}
 
+          <Text style={styles.seccion}>Administración</Text>
+
+          {opciones.map((opcion) => (
+            <View key={opcion.id} style={styles.tarjeta}>
+
+              <Text style={styles.nombre}>
+                {opcion.titulo}
+              </Text>
+
+              <Text style={styles.descripcion}>
+                {opcion.descripcion}
+              </Text>
+
+              <Pressable style={styles.boton}>
+                <Text style={styles.botonTexto}>
+                  {opcion.boton}
+                </Text>
+              </Pressable>
+
+            </View>
+          ))}
+
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -60,78 +81,92 @@ const styles = StyleSheet.create({
   },
 
   encabezado: {
-    height: 80,
     backgroundColor: '#4D315C',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 18,
-  },
-
-  menu: {
-    fontSize: 25,
-    color: '#FFFFFF',
+    padding: 25,
+    paddingVertical: 30,
   },
 
   titulo: {
-    fontSize: 15,
+    fontSize: 27,
+    fontWeight: 'bold',
     color: '#FFFFFF',
-    textAlign: 'center',
-    fontWeight: '500',
   },
 
-  espacio: {
-    width: 25,
+  subtitulo: {
+    fontSize: 12,
+    color: '#EADCEB',
+    marginTop: 5,
   },
 
   contenido: {
-    paddingHorizontal: 20,
-    paddingTop: 15,
+    padding: 18,
     paddingBottom: 30,
+  },
+
+  bienvenida: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E4D7E6',
+    padding: 20,
+    elevation: 2,
+  },
+
+  bienvenidaTitulo: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#4D315C',
+  },
+
+  bienvenidaTexto: {
+    fontSize: 12,
+    color: '#777777',
+    marginTop: 7,
+    lineHeight: 18,
+  },
+
+  seccion: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#4D315C',
+    marginTop: 25,
+    marginBottom: 15,
   },
 
   tarjeta: {
     backgroundColor: '#FFFFFF',
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#555555',
-    height: 138,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 12,
+    borderColor: '#E4D7E6',
+    padding: 18,
     marginBottom: 15,
+    elevation: 2,
   },
 
-  imagen: {
-    width: 92,
-    height: 75,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#777777',
-    alignItems: 'center',
-    justifyContent: 'center',
+  nombre: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#4D315C',
   },
 
-  textoImagen: {
-    fontSize: 10,
-    color: '#AAAAAA',
-  },
-
-  opciones: {
-    width: '48%',
-    gap: 6,
+  descripcion: {
+    fontSize: 12,
+    color: '#777777',
+    marginTop: 8,
+    marginBottom: 18,
+    lineHeight: 18,
   },
 
   boton: {
     backgroundColor: '#4D315C',
-    borderRadius: 20,
-    paddingVertical: 10,
+    borderRadius: 25,
+    paddingVertical: 11,
     alignItems: 'center',
   },
 
-  textoBoton: {
+  botonTexto: {
     fontSize: 12,
     color: '#FFFFFF',
-    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });

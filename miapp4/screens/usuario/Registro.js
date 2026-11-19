@@ -25,7 +25,7 @@ export default function Registro() {
 
             <View style={styles.grupo}>
               <Text style={styles.etiqueta}>Nombre completo</Text>
-              <TextInput
+              <Text
                 style={styles.input}
                 placeholder="Ingresa tu nombre"
                 placeholderTextColor="#888888"
@@ -34,7 +34,7 @@ export default function Registro() {
 
             <View style={styles.grupo}>
               <Text style={styles.etiqueta}>Correo electrónico</Text>
-              <TextInput
+              <Text
                 style={styles.input}
                 placeholder="Ingresa tu correo"
                 placeholderTextColor="#888888"
@@ -45,7 +45,7 @@ export default function Registro() {
 
             <View style={styles.grupo}>
               <Text style={styles.etiqueta}>Contraseña</Text>
-              <TextInput
+              <Text
                 style={styles.input}
                 placeholder="Crea una contraseña"
                 placeholderTextColor="#888888"
@@ -55,7 +55,7 @@ export default function Registro() {
 
             <View style={styles.grupo}>
               <Text style={styles.etiqueta}>Confirmar contraseña</Text>
-              <TextInput
+              <Text
                 style={styles.input}
                 placeholder="Confirma tu contraseña"
                 placeholderTextColor="#888888"
